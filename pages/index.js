@@ -1,6 +1,9 @@
+import axios from "axios"
 import Head from "next/head"
+import ArticleList from "../components/ArticleList";
 
-const index = () => {
+const index = ({ articles }) => {
+
   return (
     <div>
 
@@ -8,10 +11,23 @@ const index = () => {
             <title> Next JS Home </title>
         </Head>
         
-        <h1> Hello world </h1>
+        <ArticleList articles={articles} />
 
     </div>
   )
 }
 
 export default index
+
+
+export const getStaticProps = async () => {
+
+  const responses = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=8')
+  const articles = await responses.data
+
+  return {
+    props: {
+      articles
+    }
+  }
+}
