@@ -22,7 +22,7 @@ export default index
 
 export const getStaticProps = async () => {
 
-  const responses = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=8')
+  const responses = await axios.get('https://jsonplaceholder.typicode.com/posts')
   const articles = await responses.data
 
   return {
